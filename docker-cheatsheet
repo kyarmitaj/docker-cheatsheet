@@ -1,0 +1,133 @@
+## PULLING MYSQL IMAGE :
+
+docker image pull 
+
+## INSPECTING PORTS, VOLUME, DOCKER VERSION :
+
+docker inspect mysql:8
+
+## pulling nginx image and saving into favorite file :
+
+docker image pull nginx -O nginx.file
+
+## LOAD and IMPORT are using stablishing image from anywhere, we should consider that LOAD and IMPORT are not the same; even they might seem the same, LOAD includes the cmd,volume on the other hand IMPORT never cache the layers thus it has better performance to build base image 
+
+
+## RUNNING NGINX CONTAINER AND MAPPING TO  8081 HOSTS PORT :
+
+docker run -d --name -p 8081:80 nginx:latest
+
+## NOTE THAT WE CAN USE DCOKER PROXY TO COMMUNICATE WITH OUR REGISTRIES INCASE WE ARE NOT ABLE TO CONNECT DIRECTLY :
+
+
+## AS WELL AS WE BUILD AN IMAGE AGAIN WE WILL FACE INTO THAT THERE IS AN IMAGE WITH NONE TAG WHICH IS DANGLING AND WE CAN GET RID OF THEM BY USING :
+
+docker prune -a 
+ 
+dcoker rmi -f$(docker images -f"dangling=true" -q)
+
+
+## SIGTERM IS THE DEFAULT SIGNAL WHICH SEND TO CONTAINER WITH DOCKER KILL COMMAND
+
+
+## RUNNING AN ALPINE IMAGE AND INSTALLING NGINX ON IT AND BUILD AN IMAGE :
+
+docker run -it --name=myalpine alpine sh
+apk update 
+apk add nginx
+docker commit myalpine myalpineimage: v1
+
+## PAUSE COMMAND CAUSES CONTAINER GETS SUSPEND WITH SIGSTOP
+
+
+## RUNNING A REDIS CONTAINER AND SAVING ITS ID INTO MYREDIS.CID :
+
+docker run -d -it --name=myredis redis:latest
+myid = $(git rev-parse HEAD)
+myid > myredis.cid
+
+
+## RUNNING NGINX CONTAINER WITH SPECIFIC CPU, MEMORY, SWAP :
+
+docker run -it --rm --name=nginx -m=512 --memory-swap=256 --cpus="1.5" --cpuset-cpus=0, 2 nginx:latest
+
+
+##RUNNING AN ALPINE CONTAINER AND SETING THE ENVIRONMENT :
+
+docker run -it -d  --name=myalpine -e NAME=yourname CLASS=dws alpine
+
+
+## RUNNING ALPINE CONTAINER AND MOUNTING INTO A HOST DIRECTORY :
+
+docker run -d -it --name=myalpine /home/spetsnazh/tmp:/data -w:/data alpine:latest
+
+
+## DOCKERFILE IS USED TO AUOTMATE BUILDING IMAGE 
+
+
+## DOCKERFILE IS MUCH MORE BETTER THAN COMMITING CONTAINERS BECAUSE WE CAN AUTOMATE BUILDING IMAGES AND BUILDING 
+MULTISTAGE IMAGES
+ 
+ 
+## ENV AND ARG LOOK THE SAME BUT ENV IS CONTAINER ENVIRONMENT VARIABLE AND ARG IS IMAGE VARIABLE DURING 
+BUILDING IMAGE
+
+ 
+## ENTRYPOINT AND CMD LOOK THE SAME BUT ENTRYPOINT IS DEFAULT FOR RUNNING COMMAND AND CMD IS USED TO WHILE 
+RUNNING CONTAINER 
+
+
+##  EXPOSE PORTS MEANS WE ANNOUCE WHICH PORTS WE WANTS TO USE , PUBLISH PORTS WILL MAP THE CONTAINERS PORTS TO 
+THE HOST PORTS FOR STABLISHING CONNECTION
+
+
+## notice ; FROM alpine:latest in dockerfile means we use alpine rootfs not entire alpine OS for our image
+
+
+## RUN and ENTRYPOINT is using to run command but RUN uses during building images and installing requirenments 
+and packages
+ 
+
+## COPY and ADD look the same but COPY would copy the file exactly but ADD would copy the content even if we use 
+compressed file, in addition we can use URL to locate the targets 
+
+
+## VOLUME alow us to mount contents to our targets and save them beyound the container 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
